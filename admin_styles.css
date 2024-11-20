@@ -1,0 +1,118 @@
+/* Style général */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #000;
+    color: #fff;
+    text-align: center;
+}
+
+header {
+    background: linear-gradient(45deg, #1e3c72, #2a5298);
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+h1 {
+    margin: 0;
+    font-size: 2.5em;
+}
+
+#admin-panel {
+    margin: 20px auto;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    width: 80%;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    margin: 10px 0;
+}
+
+button {
+    background-color: #ff5722;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #e64a19;
+}
+
+/* Système solaire */
+#solar-system {
+    margin: 40px auto;
+    position: relative;
+    width: 300px;
+    height: 300px;
+}
+
+.sun {
+    width: 80px;
+    height: 80px;
+    background: radial-gradient(circle, yellow, orange, red);
+    border-radius: 50%;
+    margin: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 50px rgba(255, 223, 0, 0.8);
+}
+
+.planet {
+    width: 20px;
+    height: 20px;
+    background-color: #77dd77;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: orbit 10s linear infinite;
+}
+
+.orbit1 {
+    animation-duration: 8s;
+    transform: translate(-50%, -50%) translateX(100px);
+    background-color: #66ccff;
+}
+
+.orbit2 {
+    animation-duration: 12s;
+    transform: translate(-50%, -50%) translateX(150px);
+    background-color: #ffcc00;
+}
+
+.orbit3 {
+    animation-duration: 16s;
+    transform: translate(-50%, -50%) translateX(200px);
+    background-color: #ff4500;
+}
+
+@keyframes orbit {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg) translateX(100px) rotate(0deg);
+    }
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg) translateX(100px) rotate(-360deg);
+    }
+}
+
+/* Pied de page */
+footer {
+    background-color: #1e3c72;
+    padding: 10px;
+    font-size: 0.8em;
+}
