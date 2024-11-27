@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des Utilisateurs - Système Solaire</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: radial-gradient(circle, #000022, #000000);
+            color: #fff;
+            text-align: center;
+            overflow: hidden; /* Cache les parties qui dépassent */
+        }
+
+        h2 {
+            margin-top: 50px;
+            font-size: 2.5rem;
+            color: #FFD700;
+            text-shadow: 0 0 10px #FFD700, 0 0 20px #FFA500;
+        }
+
+        #user-management {
+            max-width: 900px;
+            margin: auto;
+            padding: 20px;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+            position: relative;
+            z-index: 10;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+            color: #fff;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        th {
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            color: #000;
+            text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+        }
+
+        tr:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        button {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: transform 0.2s, background-color 0.3s;
+        }
+
+        button:hover {
+            transform: scale(1.1);
+        }
+
+        .btn-validate {
+            background-color: #32CD32;
+            color: #fff;
+            box-shadow: 0 0 10px #32CD32;
+        }
+
+        .btn-validate:hover {
+            background-color: #28A428;
+        }
+
+        .btn-delete {
+            background-color: #FF4500;
+            color: #fff;
+            box-shadow: 0 0 10px #FF4500;
+        }
+
+        .btn-delete:hover {
+            background-color: #CC3700;
+        }
+
+        #add-user {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        #add-user input {
+            padding: 10px;
+            font-size: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 5px;
+            color: #000;
+        }
+
+        #add-user button {
+            background: #FFD700;
+            color: #000;
+            font-weight: bold;
+            box-shadow: 0 0 10px #FFD700;
+        }
+
+        #add-user button:hover {
+            background: #FFA500;
+        }
+
+        /* Design du système solaire */
+        .solar-system {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .orbit {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border: 1px dashed rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            animation: rotate 20s linear infinite;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .planet {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background: radial-gradient(circle, #FFD700, #FFA500);
+            border-radius: 50%;
+            animation: moveAround 20s linear infinite;
+            top: -15px; /* Centrer la planète sur l'orbite */
+        }
+
+        .sun {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, #FFD700, #FFA500);
+            border-radius: 50%;
+            box-shadow: 0 0 50px #FFD700, 0 0 100px #FFA500;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg) translate(-50%, -50%);
+            }
+            to {
+                transform: rotate(360deg) translate(-50%, -50%);
+            }
+        }
+
+        @keyframes moveAround {
+            from {
+                transform: rotate(0deg) translate(150px);
+            }
+            to {
+                transform: rotate(360deg) translate(150px);
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Système solaire -->
+<div class="solar-system">
+    <div class="orbit">
+        <div class="planet"></div>
+    </div>
+    <div class="sun"></div>
+</div>
+
+<section id="user-management">
+    <h2>Gestion des Utilisateurs</h2>
+
+    <!-- Tableau des utilisateurs -->
+    <table id="user-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nom</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr data-id="1">
+                <td>1</td>
+                <td>Utilisateur 1</td>
+                <td>
+                    <button class="btn-validate" onclick="validateUser(this)">Valider</button>
+                    <button class="btn-delete" onclick="deleteUser(this)">Supprimer</button>
+                </td>
+            </tr>
+            <tr data-id="2">
+                <td>2</td>
+                <td>Utilisateur 2</td>
+                <td>
+                    <button class="btn-validate" onclick="validateUser(this)">Valider</button>
+                    <button class="btn-delete" onclick="deleteUser(this)">Supprimer</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Ajouter un utilisateur -->
+    <div id="add-user">
+        <input type="text" id="new-user-name" placeholder="Nom de l'utilisateur">
+        <button onclick="addUser()">Ajouter Utilisateur</button>
+    </div>
+</section>
+
+<script>
+    function validateUser(button) {
+        const row = button.closest('tr');
+        const userName = row.querySelector('td:nth-child(2)').innerText;
+        alert(userName + " a été validé !");
+    }
+
+    function deleteUser(button) {
+        const row = button.closest('tr');
+        const userName = row.querySelector('td:nth-child(2)').innerText;
+        const confirmation = confirm("Voulez-vous vraiment supprimer " + userName + " ?");
+        if (confirmation) {
+            row.remove();
+            alert(userName + " a été supprimé.");
+        }
+    }
+
+    function addUser() {
+        const userNameInput = document.getElementById('new-user-name');
+        const userName = userNameInput.value.trim();
+
+        if (!userName) {
+            alert("Veuillez entrer un nom d'utilisateur.");
+            return;
+        }
+
+        const table = document.getElementById('user-table');
+        const newId = table.rows.length;
+
+        const newRow = document.createElement('tr');
+        newRow.setAttribute('data-id', newId);
+
+        newRow.innerHTML = `
+            <td>${newId}</td>
+            <td>${userName}</td>
+            <td>
+                <button class="btn-validate" onclick="validateUser(this)">Valider</button>
+                <button class="btn-delete" onclick="deleteUser(this)">Supprimer</button>
+            </td>
+        `;
+
+        table.querySelector('tbody').appendChild(newRow);
+        userNameInput.value = '';
+    }
+</script>
+</body>
+</html>
