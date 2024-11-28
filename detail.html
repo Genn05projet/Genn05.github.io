@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planète - Détails</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1e1e2f;
+            color: white;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        header {
+            background-color: crimson;
+            padding: 20px;
+        }
+        header h1 {
+            margin: 0;
+            color: white;
+        }
+        main {
+            margin: 20px auto;
+            max-width: 600px;
+            padding: 20px;
+            background-color: #2a2a3c;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        input[type="text"] {
+            width: 80%;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button {
+            background-color: crimson;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: darkred;
+        }
+        #details {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Détails des Planètes</h1>
+    </header>
+    <main>
+        <h2>Rechercher une planète</h2>
+        <p>Entrez le nom d'une planète pour afficher ses détails :</p>
+        <input type="text" id="planetName" placeholder="Exemple : Mars" />
+        <button onclick="showDetails()">Afficher les détails</button>
+        <div id="details"></div>
+    </main>
+    <div><a href="planet.html">retour a la page planet</a></div>
+<div><a href="quiz.html">repond au quiz</a></div>
+    <footer>
+        <p>© 2024 Système Solaire - Tous droits réservés.</p>
+    </footer>
+
+    <script>
+        const planets = {
+            "Mercure": {
+                diameter: "4,880 km",
+                gravity: "3.7 m/s²",
+                distance: "57.91 millions de km",
+                description: "Mercure est la planète la plus proche du Soleil et la plus petite du système solaire."
+            },
+            "Vénus": {
+                diameter: "12,104 km",
+                gravity: "8.87 m/s²",
+                distance: "108.2 millions de km",
+                description: "Vénus est souvent appelée l'étoile du berger, avec une atmosphère très dense et chaude."
+            },
+            "Terre": {
+                diameter: "12,742 km",
+                gravity: "9.8 m/s²",
+                distance: "149.6 millions de km",
+                description: "La Terre est la seule planète connue pour abriter la vie."
+            },
+            "Mars": {
+                diameter: "6,779 km",
+                gravity: "3.71 m/s²",
+                distance: "227.9 millions de km",
+                description: "Mars, souvent appelée la planète rouge, possède le plus haut volcan du système solaire."
+            },
+            "Jupiter": {
+                diameter: "139,820 km",
+                gravity: "24.79 m/s²",
+                distance: "778.5 millions de km",
+                description: "Jupiter est la plus grande planète et est connue pour sa Grande Tache Rouge."
+            },
+            "Saturne": {
+                diameter: "116,460 km",
+                gravity: "10.44 m/s²",
+                distance: "1.434 milliards de km",
+                description: "Saturne est célèbre pour ses magnifiques anneaux faits de glace et de roche."
+            },
+            "Uranus": {
+                diameter: "50,724 km",
+                gravity: "8.69 m/s²",
+                distance: "2.871 milliards de km",
+                description: "Uranus est une planète glacée qui tourne sur le côté."
+            },
+            "Neptune": {
+                diameter: "49,244 km",
+                gravity: "11.15 m/s²",
+                distance: "4.495 milliards de km",
+                description: "Neptune est la planète la plus éloignée du Soleil, connue pour ses vents violents."
+            }
+        };
+
+        function showDetails() {
+            const input = document.getElementById("planetName").value.trim();
+            const detailsDiv = document.getElementById("details");
+
+            if (planets[input]) {
+                const planet = planets[input];
+                detailsDiv.innerHTML = `
+                    <h3>${input}</h3>
+                    <p><strong>Diamètre :</strong> ${planet.diameter}</p>
+                    <p><strong>Gravité :</strong> ${planet.gravity}</p>
+                    <p><strong>Distance au Soleil :</strong> ${planet.distance}</p>
+                    <p>${planet.description}</p>
+                `;
+            } else {
+                detailsDiv.innerHTML = "<p style='color: red;'>Planète non trouvée. Veuillez vérifier le nom.</p>";
+            }
+        }
+    </script>
+</body>
+</html>

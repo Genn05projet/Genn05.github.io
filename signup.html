@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page d'Inscription</title>
+    <link rel="stylesheet" href="login_styles.css">
+</head>
+<body>
+    <header>
+        <h1>Créer un Compte</h1>
+        <p>Inscrivez-vous pour accéder à votre espace personnalisé</p>
+    </header>
+
+    <main>
+        <section id="signup-form" class="container">
+            <form action="signup.php" method="POST">
+                <div class="form-group">
+                    <label for="email">Adresse Email :</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Mot de Passe :</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <div class="form-group">
+                    <label for="confirm-password">Confirmez le Mot de Passe :</label>
+                    <input type="password" id="confirm-password" name="confirm-password" required>
+                </div>
+                <button type="submit">S'inscrire</button>
+            </form>
+            <p>Déjà un compte ? <a href="login.html">Connectez-vous ici</a></p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Système Solaire</p>
+    </footer>
+</body>
+</html>
